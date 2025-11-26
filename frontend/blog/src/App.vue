@@ -67,7 +67,7 @@
             <h3>个人简介</h3>
             <p>QQ：885231379</p>
             <p>邮箱：885231379@qq.com</p>
-            <a href="https://www.ycresume.com/cv/250925NZ6N74ZO4WP" target="_blank">
+            <a href="https://www.ycresume.com/cv/251106E7RW5UWG8PT" target="_blank">
               这是我的简历！</a>
           </div>
           

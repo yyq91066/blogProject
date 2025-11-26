@@ -8,6 +8,17 @@ spring:
     init:
       mode: always
       schema-locations: classpath:schema.sql
+  redis:
+    host: 101.126.151.51  # Redis 地址（生产填服务器 IP）
+    port: 6379       # 端口（默认 6379）
+    password: "123456"     # 密码（生产必须设置，本地可留空）
+    database: 0      # 操作的数据库索引（0-15，默认 0）
+    lettuce: # 连接池配置（Lettuce）
+      pool:
+        max-active: 8    # 最大连接数
+        max-idle: 8      # 最大空闲连接
+        min-idle: 2      # 最小空闲连接
+        max-wait: -1ms   # 最大等待时间（-1 表示无限制）
     
 mybatis:
   configuration:
