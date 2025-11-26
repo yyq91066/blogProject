@@ -1,0 +1,75 @@
+<template>
+    <div class="min-h-screen bg-blue-50 text-gray-800">
+        <header class="w-full bg-white shadow-md p-5 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-blue-600">My Blog</h1>
+            <nav class="space-x-6 text-lg">
+                <a href="#" class="hover:text-blue-500">首页</a>
+                <a href="#" class="hover:text-blue-500">文章</a>
+                <a href="#" class="hover:text-blue-500">关于</a>
+            </nav>
+        </header>
+
+        <main class="max-w-5xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <section class="md:col-span-2 space-y-6">
+                <div v-for="(post, index) in posts" :key="index" class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                    <img :src="post.image" class="w-full h-56 object-cover rounded-xl mb-4" />
+                    <h2 class="text-2xl font-semibold mb-2">{{ post.title }}</h2>
+                    <p class="text-gray-600 leading-relaxed">{{ post.desc }}</p>
+                    <button class="mt-3 px-4 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600">阅读更多</button>
+                </div>
+            </section>
+
+            <aside class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow">
+                    <h3 class="text-xl font-semibold mb-3">个人简介</h3>
+                    <p class="text-gray-600 leading-relaxed">这里是博主简介，可以写一些自我介绍、研究方向或兴趣爱好。</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow">
+                    <h3 class="text-xl font-semibold mb-3">热门标签</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span v-for="(t, i) in tags" :key="i" class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">{{ t }}</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="mt-20 py-6 text-center text-gray-500">
+            © 2025 My Blog. All rights reserved.
+        </footer>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "BlogPage",
+        data() {
+            return {
+                posts: [
+                    {
+                        title: "Vue3 + Tailwind 打造精美博客页面",
+                        desc: "本篇文章介绍如何快速构建一个现代博客页面，包括 UI 设计、交互和组件拆分……",
+                        image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2"
+                    },
+                    {
+                        title: "前端工程化的最佳实践",
+                        desc: "从模块化、构建流程到自动化部署，带你全面了解前端工程化的核心思想……",
+                        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+                    },
+                    {
+                        title: "JavaScript 性能优化指南",
+                        desc: "介绍 Web 性能优化的常见方案，包括代码分割、缓存机制和 DOM 优化……",
+                        image: "https://images.unsplash.com/photo-1485217988980-11786ced9454"
+                    }
+                ],
+                tags: ["Vue", "前端", "JavaScript", "CSS", "组件化", "性能优化", "Blog"]
+            };
+        }
+    };
+</script>
+
+<style scoped>
+    body {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+</style>

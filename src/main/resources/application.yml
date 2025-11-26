@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mysql://101.126.151.51:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: root
+    password: Qten09100
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+    
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    
+server:
+  port: 8080
+
+logging:
+  level:
+    com.example.blog: DEBUG
+    org.mybatis: DEBUG
