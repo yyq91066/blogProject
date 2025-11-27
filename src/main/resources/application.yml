@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://101.126.151.51:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
-    username: root
-    password: Qten09100
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: blog
+    password: Blog@App123
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:  #项目启动时自动执行数据库初始化脚本（比如创建表结构、插入初始数据），简化数据库初始化流程。
