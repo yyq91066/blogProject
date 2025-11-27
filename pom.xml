@@ -21,6 +21,11 @@
     <dependencies>
         <!-- MinIO Java SDK -->
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
             <version>8.5.9</version> <!-- 推荐稳定版本，可按需更新 -->

@@ -70,7 +70,7 @@
             <a href="https://www.ycresume.com/cv/251106E7RW5UWG8PT" target="_blank">
               这是我的简历！</a>
           </div>
-          
+
           <div class="widget">
             <h3>热门标签</h3>
             <div class="tags">
@@ -79,6 +79,7 @@
               </span>
             </div>
           </div>
+          <button @click="jumpToApp2">跳转到图片上传页面</button>
         </aside>
       </div>
 
@@ -114,6 +115,13 @@ export default {
     this.loadPosts()
   },
   methods: {
+    jumpToApp2() {
+      // 方式1: 同窗口跳转
+      this.$router.push('/app2');
+
+      // 方式2: 新窗口打开
+      // window.open('/app2', '_blank')
+    },
     async loadPosts() {
       try {
         const response = await axios.get('/api/posts')

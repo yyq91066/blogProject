@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.blog.mapper.ImageInfoMapper">
+
+    <!-- 新增 -->
+    <insert id="insert" parameterType="com.example.blog.model.ImageInfo">
+        INSERT INTO image_info (
+            image_id, original_name, image_url, image_size,
+            image_suffix, business_type, business_id, upload_time
+        ) VALUES (
+                     #{imageId}, #{originalName}, #{imageUrl}, #{imageSize},
+                     #{imageSuffix}, #{businessType}, #{businessId}, #{uploadTime}
+                 )
+    </insert>
+
+    <!-- 按业务查询 -->
+    <select id="selectByBusiness" resultType="com.example.blog.model.ImageInfo">
+        SELECT * FROM image_info
+        WHERE business_type = #{businessType}
+          AND business_id = #{businessId}
+        ORDER BY upload_time DESC
+    </select>
+
+    <!-- 按imageId删除 -->
+    <delete id="deleteByImageId">
+        DELETE FROM image_info WHERE image_id = #{imageId}
+    </delete>
+
+    <!-- 按imageId查询 -->
+    <select id="selectByImageId" resultType="com.example.blog.model.ImageInfo">
+        SELECT * FROM image_info WHERE image_id = #{imageId}
+    </select>
+
+</mapper>
