@@ -5,9 +5,9 @@ spring:
     password: Qten09100
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
-    init:
-      mode: always
-      schema-locations: classpath:schema.sql
+    init:  #项目启动时自动执行数据库初始化脚本（比如创建表结构、插入初始数据），简化数据库初始化流程。
+      mode: never #控制数据库初始化的触发时机，always 表示 每次项目启动时都会执行初始化脚本（无论数据库是否已有表结构）。
+      schema-locations: classpath:schema.sql #指定初始化脚本的路径
   redis:
     host: 101.126.151.51  # Redis 地址（生产填服务器 IP）
     port: 6379       # 端口（默认 6379）
@@ -19,7 +19,11 @@ spring:
         max-idle: 8      # 最大空闲连接
         min-idle: 2      # 最小空闲连接
         max-wait: -1ms   # 最大等待时间（-1 表示无限制）
-    
+  servlet:
+    multipart:
+      max-file-size: 100MB  # 限制文件上传大小（根据需求调整）
+      max-request-size: 100MB
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
@@ -31,3 +35,8 @@ logging:
   level:
     com.example.blog: DEBUG
     org.mybatis: DEBUG
+minio:
+  endpoint: http://101.126.151.51:9000  # 服务器 MinIO 服务地址（注意是 9000 端口）
+  access-key: root  # 管理员账号（步骤 2 中设置的 MINIO_ROOT_USER）
+  secret-key: 09100910  # 管理员密码（步骤 2 中设置的 MINIO_ROOT_PASSWORD）
+  bucket: test-bucket  # 默认存储桶（步骤 2 中创建的 test-bucket）

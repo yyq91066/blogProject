@@ -2,6 +2,7 @@ package com.example.blog.service;
 
 import com.example.blog.mapper.PostMapper;
 import com.example.blog.model.Post;
+import org.hibernate.query.criteria.internal.expression.function.CurrentTimeFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,13 @@ public class PostService {
     private RedisTemplate redisTemplate;
     
     public List<Post> findAll() {
-        Post post = new Post();
+       // Post post = new Post();
 
-        redisTemplate.opsForValue().set("1", "1sssssss");
-        Object o = redisTemplate.opsForValue().get("1");
+        redisTemplate.opsForValue().set("time", "redis缓存当前系统时间"+LocalDateTime.now());
+        Object o = redisTemplate.opsForValue().get("time");
         System.out.println(o.toString());
-        List<Post> all = postMapper.findAll();
-        return all;
+       // List<Post> all = ;
+        return postMapper.findAll();
     }
     
     public Post findById(Long id) {
