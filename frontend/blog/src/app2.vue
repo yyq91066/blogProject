@@ -127,7 +127,8 @@
 import axios from 'axios';
 
 // 配置axios基础路径（根据你的服务器实际地址修改）
-axios.defaults.baseURL = 'http://101.126.151.51:8080/blog'; // 带WAR包名blog
+// axios.defaults.baseURL = 'http://101.126.151.51:8080/blog'; // 带WAR包名blog
+axios.defaults.baseURL = 'http://localhost:8080'; // 带WAR包名blog
 
 export default {
   name: 'ImageManage',

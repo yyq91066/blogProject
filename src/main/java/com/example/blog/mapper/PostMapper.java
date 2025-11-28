@@ -22,5 +22,5 @@ public interface PostMapper {
     void update(Post post);
     
     @Delete("DELETE FROM posts WHERE id = #{id}")
-    void deleteById(Long id);
+    boolean deleteById(Long id);
 }

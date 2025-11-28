@@ -57,6 +57,9 @@
               <a :href="'#/post/' + post.id" class="btn-read-more" @click="viewFullPost(post)">
                 阅读全文
               </a>
+              <p  class="btn-read-more" @click="delPostById(post.id)">
+                删除该文章
+              </p>
             </article>
           </div>
         </section>
@@ -243,8 +246,19 @@ export default {
       `);
       newWindow.document.close();
     },
-    delPost(){
-      alert("你凭啥删啊？")
+    delPostById(id){
+      //axios.post('/api/posts', this.newPost)
+      axios.delete('/api/posts/'+id)
+      .then(response => {
+        // 刷新页面
+        window.location.reload();
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.error('删除文章失败:', error)
+        alert('删除文章失败，请重试')
+      });
+
     }
   }
 }

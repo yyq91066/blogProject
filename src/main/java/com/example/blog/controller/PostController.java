@@ -22,6 +22,7 @@ public class PostController {
     
     @GetMapping
     public List<Post> getAllPosts() {
+
         return postService.findAll();
     }
     
@@ -52,6 +53,7 @@ public class PostController {
             post.setUpdatedTime(LocalDateTime.now());
             postService.save(post);
             return ResponseEntity.ok(post);
+
         } catch (Exception e) {
             Map<String, String> error = new HashMap<>();
             error.put("error", "发布文章失败: " + e.getMessage());
@@ -67,7 +69,14 @@ public class PostController {
     }
     
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable Long id) {
-        postService.deleteById(id);
+    public String deletePost(@PathVariable Long id) {
+
+        boolean flag=postService.deleteById(id);
+        if(flag){
+            return id+"删除成功";
+
+        }else {
+            return id+"删除失败";
+        }
     }
 }
