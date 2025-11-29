@@ -1,23 +1,19 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import App from '../App.vue'
-import App2 from '../app2.vue'
-
-const routes = [
-    {
-        path: '/',
-        name: 'Home',
-        component: App
-    },
-    {
-        path: '/app2',
-        name: 'App2',
-        component: App2
-    }
-]
+import { createRouter, createWebHistory } from 'vue-router'
+import AIChat from '@/views/AIChat.vue'
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes
+    history: createWebHistory(process.env.BASE_URL || '/'),
+    routes: [
+        {
+            path: '/',
+            redirect: '/ai-chat'
+        },
+        {
+            path: '/ai-chat',
+            name: 'AIChat',
+            component: AIChat
+        }
+    ]
 })
 
 export default router

@@ -3,7 +3,6 @@ package com.example.blog.service;
 import com.example.blog.mapper.PostMapper;
 import com.example.blog.model.Logs;
 import com.example.blog.model.Post;
-import org.hibernate.query.criteria.internal.expression.function.CurrentTimeFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -60,6 +59,7 @@ public class PostService {
     }
     
     public boolean deleteById(Long id) {
-        return postMapper.deleteById(id);
+        postMapper.deleteById(id);
+        return true;
     }
 }

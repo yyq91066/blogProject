@@ -1,6 +1,5 @@
 package com.example.blog.controller;
 
-import com.example.blog.mapper.ImageInfoMapper;
 import com.example.blog.model.ImageInfo;
 import com.example.blog.util.MinioUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,26 +22,26 @@ public class MinioController {
 
     @Autowired
     private MinioUtil minioUtil;
-    @Autowired
-    private ImageInfoMapper imageInfoMapper;
+//    @Autowired
+//    private ImageInfoMapper imageInfoMapper;
 
 
-    @GetMapping("/list")
-    public ResponseEntity<List<ImageInfo>> getImageList(
-            @RequestParam("businessType") String businessType,
-            @RequestParam("businessId") String businessId
-    ) {
-        // 按业务类型+业务ID查询图片（如查商品123的所有图片：businessType=goods_img，businessId=123）
-        List<ImageInfo> imageList = imageInfoMapper.selectByBusiness(businessType, businessId);
-        List<ImageInfo> voList = imageList.stream().map(info -> {
-            ImageInfo vo = new ImageInfo();
-            vo.setId(info.getId());
-            vo.setImageUrl(info.getImageUrl());
-            vo.setOriginalName(info.getOriginalName());
-            return vo;
-        }).collect(Collectors.toList());
-        return new ResponseEntity<>(voList, HttpStatus.OK);
-    }
+//    @GetMapping("/list")
+//    public ResponseEntity<List<ImageInfo>> getImageList(
+//            @RequestParam("businessType") String businessType,
+//            @RequestParam("businessId") String businessId
+//    ) {
+//        // 按业务类型+业务ID查询图片（如查商品123的所有图片：businessType=goods_img，businessId=123）
+//        List<ImageInfo> imageList = imageInfoMapper.selectByBusiness(businessType, businessId);
+//        List<ImageInfo> voList = imageList.stream().map(info -> {
+//            ImageInfo vo = new ImageInfo();
+//            vo.setId(info.getId());
+//            vo.setImageUrl(info.getImageUrl());
+//            vo.setOriginalName(info.getOriginalName());
+//            return vo;
+//        }).collect(Collectors.toList());
+//        return new ResponseEntity<>(voList, HttpStatus.OK);
+//    }
     /**
      * 文件上传接口
      */
