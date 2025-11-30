@@ -3,7 +3,7 @@ import axios from 'axios'; // 需安装 axios：npm install axios
 // 创建 axios 实例（统一配置请求基础路径、超时等）
 const service = axios.create({
     // baseURL: import.meta.env.VITE_API_BASE_URL || '/', // 从环境变量读取基础路径
-    baseURL: process.env.VUE_APP_BASE_URL || 'http://localhost:8080',
+    baseURL: process.env.VUE_APP_BASE_URL || 'http://101.126.151.51:8080/blog/',
     timeout: 30000, // 超时时间 30 秒（AI 响应可能较慢）
     headers: {
         'Content-Type': 'application/json'

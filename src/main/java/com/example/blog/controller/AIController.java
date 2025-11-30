@@ -1,6 +1,9 @@
 package com.example.blog.controller;
 
+import com.example.blog.model.Logs;
+import com.example.blog.service.LogsService;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ai.chat.messages.AssistantMessage;
@@ -9,6 +12,7 @@ import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +24,11 @@ import java.util.Map;
 public class AIController {
 
     private final ChatClient chatClient;
+    @Autowired
+    private LogsService logsService;
 
     public AIController(ChatClient.Builder chatClientBuilder) {
+
         this.chatClient = chatClientBuilder.build();
     }
 
@@ -107,8 +114,8 @@ public class AIController {
 
             // ① 定义 AI 为通用聊天助手（核心：聊天相关提示词）
             messages.add(new SystemMessage(
-                    "你是友好、专业的通用聊天助手，擅长解答各种问题,你的名字叫杨玉泉，是java开发工程师。" +
-                            "要求：1. 中文回复，语气亲切自然，首次见面可以介绍一下自己；2. 回答准确简洁，不啰嗦；3. 支持多轮对话，记住上下文。"
+                    "你是解答各种问题的AI专家，你的名字叫玉泉老板" +
+                            "要求：1. 中文回复，首次见面可以介绍一下自己；2. 回答准确简洁，不啰嗦；3. 支持多轮对话，记住上下文。4.要展示出你的高智商"
             ));
 
             // ② 加入历史对话（实现上下文关联）
@@ -132,6 +139,13 @@ public class AIController {
                     .messages(messages) // 传入完整对话链
                     .call()
                     .content();
+
+            // 储存对话链
+            Logs logs =new Logs();
+            logs.setLogName("对话链储存");
+            logs.setLogDescribe("用户:"+newMessage+"AI:"+aiResponse+"/分隔/完整对话链："+messages);
+            logs.setTime(LocalDateTime.now());
+            logsService.insertLog(logs);
 
             // 5. 返回结果（JDK 17 用 Map.of() 简化代码）
             return ResponseEntity.ok(Map.of(
